@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("/test")
 public class TestController {
+    //git方式请求
     @GetMapping("demo1")
     @ResponseBody
     public String text(){
