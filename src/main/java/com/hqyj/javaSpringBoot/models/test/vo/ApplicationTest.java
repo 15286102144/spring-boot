@@ -6,7 +6,9 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 @Component
+//绑定配置文件
 @PropertySource("classpath:config/applicationtest.properties")
+//设置配置类属性
 @ConfigurationProperties(prefix = "com.tt")
 public class ApplicationTest {
     private int port;
