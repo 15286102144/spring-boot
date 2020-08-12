@@ -7,11 +7,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-/**
- * @Description CountryDao
- * @Author HymanHu
- * @Date 2020/8/11 13:53
- */
 @Repository
 @Mapper
 public interface CountryDao {
