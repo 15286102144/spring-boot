@@ -54,7 +54,7 @@ public class StudentController {
         return  service.getstudentBystudentNamelike(studentName);
     }
 
-    /*
+    /*模糊查询
      * 127.0.0.1/api/student2?studentName=j   get
      * */
     @GetMapping(value = "student2")
