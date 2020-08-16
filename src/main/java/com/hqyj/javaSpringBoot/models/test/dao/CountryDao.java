@@ -17,7 +17,7 @@ public interface CountryDao {
         @Result(column = "country_id", property = "cities",
                 javaType = List.class,
                 many = @Many(select =
-                        "com.sfac.javaSpringBoot.modules.test.dao.CityDao.getCitiesByCountryId"))
+                        "com.hqyj.javaSpringBoot.models.test.dao.CityDao.getCitiesByCountryId"))
     })
     Country getCountryByCountryId(int countryId);
 

@@ -39,6 +39,7 @@ public class StudentServiceimpl implements StudentService {
         //排序方式
         Sort.Direction direction = "desc".equalsIgnoreCase(searchVo.getSort()) ?
                 Sort.Direction.DESC : Sort.Direction.ASC;
+        //isBlank判断非空空字符串结果为""和"  "都为true，isempty空字符串"  "为false ""为true
         Sort sort = new Sort(direction, StringUtils.isBlank(searchVo.getOrderBy()) ? "studentId" : searchVo.getOrderBy());
         //起始页从0开始
         Pageable pageable = PageRequest.of(searchVo.getCurrentPage() - 1, searchVo.getPageSize(), sort);
@@ -56,6 +57,7 @@ public class StudentServiceimpl implements StudentService {
 
     @Override
     public List<Student> getstudenttopBystudentNamelike(String studentName) {
+        //占位符%s将传入参数变为小写，%S 将参数格式化为全大写
         return Optional.ofNullable(studentRepository.findTop3ByStudentNameLike(String.format("%s%S%s","%",studentName,"%"))).orElse(Collections.emptyList());
 
     }
