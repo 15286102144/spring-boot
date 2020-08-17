@@ -18,7 +18,7 @@ public class CardController {
 127.0.0.1/api/card    -----post
 {"cardNo":"jgljdojsdoj"}
 * */
-@PostMapping(value = "card", consumes = "application/json")
+@PostMapping(value = "/card", consumes = "application/json")
     public Result<Card> insertcard(@RequestBody Card card) {
         return service.insertcard(card);
     }

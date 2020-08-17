@@ -19,7 +19,7 @@ public class StudentController {
     * 127.0.0.1/api/student  -----post
     * {"studentName":"112323","studentCard":{"cardId":"1"}}
     * */
-    @PostMapping(value = "student",consumes = "application/json")
+    @PostMapping(value = "/student",consumes = "application/json")
     public Result<Student> insertstudent(@RequestBody Student student) {
         return service.insertstudent(student);
     }
@@ -49,7 +49,7 @@ public class StudentController {
     /*
     * 127.0.0.1/api/student1?studentName=j   get
     * */
-@GetMapping(value = "student1")
+@GetMapping(value = "/student1")
     public List<Student> getstudentBystudentNamelike(@RequestParam String studentName) {
         return  service.getstudentBystudentNamelike(studentName);
     }
@@ -57,7 +57,7 @@ public class StudentController {
     /*模糊查询
      * 127.0.0.1/api/student2?studentName=j   get
      * */
-    @GetMapping(value = "student2")
+    @GetMapping(value = "/student2")
     public List<Student> getstudenttopBystudentNamelike(@RequestParam String studentName) {
         return service.getstudenttopBystudentNamelike(studentName);
     }
@@ -65,7 +65,7 @@ public class StudentController {
     /*
      * 127.0.0.1/api/student3?studentName=j&cardId=2   get
      * */
-    @GetMapping(value = "student3")
+    @GetMapping(value = "/student3")
     public List<Student> getstudenttopBystudentNameparm(@RequestParam String studentName,@RequestParam(required = false,defaultValue = "1") int cardId) {
         return service.getstudentBystudentName(studentName,cardId);
     }

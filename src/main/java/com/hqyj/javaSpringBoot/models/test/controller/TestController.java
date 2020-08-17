@@ -13,16 +13,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.stream.Collectors;
+
 
 @Controller
 @RequestMapping("/test")
 public class TestController {
 
-    private final static Logger LOGGER =LoggerFactory.getLogger(TestController.class);
+    private final static Logger LOGGER = LoggerFactory.getLogger(TestController.class);
     @Value("${server.port}")
     private int port;
     @Value("${com.name}")
@@ -35,10 +38,9 @@ public class TestController {
     private String random;
 
 
-
-@GetMapping("/logtest")
-@ResponseBody
-    public  String logtest(){
+    @GetMapping("/logtest")
+    @ResponseBody
+    public String logtest() {
         LOGGER.trace("trace");
         LOGGER.debug("debug");
         LOGGER.info("info");
@@ -46,33 +48,36 @@ public class TestController {
         LOGGER.error("error");
         return "logtest";
     }
-@GetMapping("/config")
-@ResponseBody
-    public String configtest(){
-    StringBuffer s=new StringBuffer();
-                s
+
+    @GetMapping("/config")
+    @ResponseBody
+    public String configtest() {
+        StringBuffer s = new StringBuffer();
+        s
                 .append(port).append("-----")
                 .append(name).append("-----")
                 .append(age).append("-----")
                 .append(desc).append("-----")
                 .append(random).append("-----").append("<br>");
-               s
+        s
                 .append(applicationTest.getPort()).append("-----")
                 .append(applicationTest.getName()).append("-----")
                 .append(applicationTest.getAge()).append("-----")
                 .append(applicationTest.getDesc()).append("-----")
                 .append(applicationTest.getRandom()).append("-----").append("<br>");
-               return s.toString();
+        return s.toString();
     }
 
-@Autowired
+    @Autowired
     private ApplicationTest applicationTest;
+
     //git方式请求
-    @GetMapping("demo1")
+    @GetMapping("/demo1")
     @ResponseBody
-    public String text(){
+    public String text() {
         return "ddsfsdfsdk6333554784";
     }
+
     @Autowired
     private CityService cityService;
     @Autowired
@@ -100,8 +105,7 @@ public class TestController {
                 "/upload/1111.png");
         modelMap.addAttribute("country", country);
         modelMap.addAttribute("cities", cities);
-        modelMap.addAttribute("updateCityUri", "/api/city");
-        modelMap.addAttribute("template", "test/index");
+        modelMap.addAttribute("updateCityUri", "/api/cititt");
         // 返回外层的碎片组装器
         return "index";
     }
@@ -114,5 +118,16 @@ public class TestController {
         modelMap.addAttribute("template", "test/index2");
         return "index";
     }
-}
+
+    /**
+     * 127.0.0.1/test/testDesc?paramKey=fuck ---- get
+     */
+    @GetMapping("/testDesc")
+    @ResponseBody
+        public String testDesc (HttpServletRequest request,
+                @RequestParam(value = "paramKey") String paramValue){
+            String paramValue2 = request.getParameter("paramKey");
+            return "This is test module desc." + paramValue + "==" + paramValue2;
+        }
+    }
 
