@@ -30,7 +30,6 @@ public class RequestViewInterceptor implements HandlerInterceptor {
             if (modelAndView == null || modelAndView.getViewName().startsWith("redirect")) {
                 return;
             }
-
             String path = request.getServletPath();
             String template = (String) modelAndView.getModelMap().get("template");
             if (StringUtils.isBlank(template)) {

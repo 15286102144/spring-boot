@@ -5,18 +5,26 @@ import com.hqyj.javaSpringBoot.models.test.entity.Country;
 import com.hqyj.javaSpringBoot.models.test.service.CityService;
 import com.hqyj.javaSpringBoot.models.test.service.CountryServcie;
 import com.hqyj.javaSpringBoot.models.test.vo.ApplicationTest;
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
+import java.net.MalformedURLException;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -129,5 +137,124 @@ public class TestController {
             String paramValue2 = request.getParameter("paramKey");
             return "This is test module desc." + paramValue + "==" + paramValue2;
         }
+
+        /**
+     * 127.0.0.1/test/files---- post
+     */
+    @PostMapping(value = "/files",consumes = "multipart/form-data")
+        public String uploadfils (@RequestParam MultipartFile[] files, RedirectAttributes redirectAttributes){
+    boolean empty = true;
+        try {
+        for (MultipartFile file : files) {
+            if (file.isEmpty()) {
+                continue;
+            }
+
+            String destFilePath = "C:\\Users\\wang\\Desktop\\files\\" + file.getOriginalFilename();
+            File destFile = new File(destFilePath);
+            file.transferTo(destFile);
+            empty = false;
+        }
+
+        if (empty) {
+            redirectAttributes.addFlashAttribute(
+                    "message", "请选择要上传的文件");
+        } else {
+            redirectAttributes.addFlashAttribute(
+                    "message", "文件上传成功");
+        }
+
+    } catch (IOException e) {
+        e.printStackTrace();
+        redirectAttributes.addFlashAttribute(
+                "message", "文件上传失败");
+    }
+
+        return "redirect:/test/index";
+}
+@GetMapping("/file")
+public ResponseEntity donloadFile(@RequestParam String fileName){
+    try {
+        Resource resource=new UrlResource(Paths.get("C:\\Users\\wang\\Desktop\\files\\"+fileName).toUri());
+        return ResponseEntity.ok().header(HttpHeaders.CONTENT_TYPE,
+                "application/octer-stream")
+                .header(HttpHeaders.CONTENT_DISPOSITION,String.format("attachment;filename=\"%s\"", resource.getFilename())).body(resource);
+    } catch (MalformedURLException e) {
+        e.printStackTrace();
+    }
+    return null;
+}
+
+    /**
+     * 将文件以BufferedInputStream的方式读取到byte[]里面，然后用OutputStream.write输出文件
+     */
+    @RequestMapping("/download1")
+    public void downloadFile1(HttpServletRequest request,
+                              HttpServletResponse response, @RequestParam String fileName) {
+        String filePath = "D:/upload" + File.separator + fileName;
+        File downloadFile = new File(filePath);
+
+        if (downloadFile.exists()) {
+            response.setContentType("application/octet-stream");
+            response.setContentLength((int)downloadFile.length());
+            response.setHeader(HttpHeaders.CONTENT_DISPOSITION,
+                    String.format("attachment; filename=\"%s\"", fileName));
+
+            byte[] buffer = new byte[1024];
+            FileInputStream fis = null;
+            BufferedInputStream bis = null;
+            try {
+                fis = new FileInputStream(downloadFile);
+                bis = new BufferedInputStream(fis);
+                OutputStream os = response.getOutputStream();
+                int i = bis.read(buffer);
+                while (i != -1) {
+                    os.write(buffer, 0, i);
+                    i = bis.read(buffer);
+                }
+            } catch (Exception e) {
+                LOGGER.debug(e.getMessage());
+                e.printStackTrace();
+            } finally {
+                try {
+                    if (fis != null) {
+                        fis.close();
+                    }
+                    if (bis != null) {
+                        bis.close();
+                    }
+                } catch (Exception e2) {
+                    LOGGER.debug(e2.getMessage());
+                    e2.printStackTrace();
+                }
+            }
+        }
+    }
+
+    /**
+     * 以包装类 IOUtils 输出文件
+     */
+    @RequestMapping("/download2")
+    public void downloadFile2(HttpServletRequest request,
+                              HttpServletResponse response, @RequestParam String fileName) {
+        String filePath = "D:/upload" + File.separator + fileName;
+        File downloadFile = new File(filePath);
+
+        try {
+            if (downloadFile.exists()) {
+                response.setContentType("application/octet-stream");
+                response.setContentLength((int)downloadFile.length());
+                response.setHeader(HttpHeaders.CONTENT_DISPOSITION,
+                        String.format("attachment; filename=\"%s\"", fileName));
+
+                InputStream is = new FileInputStream(downloadFile);
+                IOUtils.copy(is, response.getOutputStream());
+                response.flushBuffer();
+            }
+        } catch (Exception e) {
+            LOGGER.debug(e.getMessage());
+            e.printStackTrace();
+        }
+    }
     }
 
