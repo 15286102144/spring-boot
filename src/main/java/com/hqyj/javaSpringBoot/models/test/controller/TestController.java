@@ -256,5 +256,12 @@ public ResponseEntity donloadFile(@RequestParam String fileName){
             e.printStackTrace();
         }
     }
+    /*
+    * 127.0.0.1/test/indexSimple  ----get
+    * */
+    @GetMapping("/indexSimple")
+    public String indexSimple(){
+        return "indexSimple";
+    }
     }
 
