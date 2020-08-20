@@ -25,7 +25,6 @@ public class RequestViewInterceptor implements HandlerInterceptor {
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
             LOGGER.debug("==== Post interceptor ====");
-            // TODo
 
             if (modelAndView == null || modelAndView.getViewName().startsWith("redirect")) {
                 return;
