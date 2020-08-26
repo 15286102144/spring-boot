@@ -13,9 +13,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
 
-/**
- ControllerAspect ---- 以包表达式的方式进行切面程序
- */
+
 @Aspect
 @Component
 public class ControllerAspect {

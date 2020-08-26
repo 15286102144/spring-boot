@@ -1,24 +1,18 @@
 package com.hqyj.javaSpringBoot.models.test.vo;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
+
 @Component
-//绑定配置文件
-@PropertySource("classpath:config/applicationtest.properties")
-//设置配置类属性
-@ConfigurationProperties(prefix = "com.tt")
+@PropertySource("classpath:config/applicationTest.properties")
+@ConfigurationProperties(prefix = "com.qq")
 public class ApplicationTest {
     private int port;
-
     private String name;
-
     private int age;
-
     private String desc;
-
     private String random;
 
     public int getPort() {
@@ -59,16 +53,5 @@ public class ApplicationTest {
 
     public void setRandom(String random) {
         this.random = random;
-    }
-
-    @Override
-    public String toString() {
-        return "ApplicationTest{" +
-                "port=" + port +
-                ", name='" + name + '\'' +
-                ", age=" + age +
-                ", desc='" + desc + '\'' +
-                ", random='" + random + '\'' +
-                '}';
     }
 }

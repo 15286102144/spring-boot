@@ -1,15 +1,11 @@
 package com.hqyj.javaSpringBoot.models.test.controller;
 
-import com.hqyj.javaSpringBoot.models.test.service.CountryServcie;
 import com.hqyj.javaSpringBoot.models.test.entity.Country;
+import com.hqyj.javaSpringBoot.models.test.service.CountryServcie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-/**
- * @Description CountryController
- * @Author HymanHu
- * @Date 2020/8/11 14:01
- */
+
 @RestController
 @RequestMapping("/api")
 public class CountryController {
@@ -38,8 +34,6 @@ public class CountryController {
      */
     @GetMapping("/redis/country/{countryId}")
     public Country mograteCountryByRedis(@PathVariable int countryId) {
-        return countryServcie.mograteCountryByRedis(countryId);
+        return countryServcie.migrateCountryByRedis(countryId);
     }
-
-
 }

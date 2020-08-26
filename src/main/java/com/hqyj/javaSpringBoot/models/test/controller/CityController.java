@@ -10,11 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/**
- * @Description CityController
- * @Author HymanHu
- * @Date 2020/8/11 14:12
- */
+
 @RestController
 @RequestMapping("/api")
 public class CityController {
@@ -42,35 +38,37 @@ public class CityController {
 
     /**
      * 127.0.0.1/api/cities --- post
-     * {"currentPage":"1","pageSize":"5","keyWord":"sh","orderBy":"city_name","sort":"desc"}
+     * {"currentPage":"1","pageSize":"5","keyWord":"Sh","orderBy":"city_name","sort":"desc"}
      */
     @PostMapping(value = "/cities", consumes = "application/json")
     public PageInfo<City> getCitiesBySearchVo(@RequestBody SearchVo searchVo) {
         return cityService.getCitiesBySearchVo(searchVo);
     }
 
-    /**插入
-     * 127.0.0.1/api/cititt---- post
+    /**
+     * 127.0.0.1/api/city ---- post
      * {"cityName":"test1","localCityName":"freeCity","countryId":"522"}
      */
-    @PostMapping(value = "/cititt", consumes = "application/json")
-    public Result<City> insertcity(@RequestBody City city) {
-      return   cityService.insertcity(city);
+    @PostMapping(value = "/city", consumes = "application/json")
+    public Result<City> insertCity(@RequestBody City city) {
+        return cityService.insertCity(city);
     }
-    /**修改
-     * 127.0.0.1/api/cititt---- put
-     * {"cityName":"6666","cityId":"2258"}
+
+    /**
+     * 127.0.0.1/api/city ---- put
+     * "cityId"="2259",cityName"="aaaaa"
      */
-    @PutMapping(value = "/cititt", consumes = "application/x-www-form-urlencoded")
+    @PutMapping(value = "/city", consumes = "application/x-www-form-urlencoded")
     public Result<City> updateCity(@ModelAttribute City city) {
         return cityService.updateCity(city);
     }
 
-    /**删除
-     * 127.0.0.1/api/cititt/2258 ---- delete
+    /**
+     * 127.0.0.1/api/city/2258 ---- delete
      */
-    @DeleteMapping("/cititt/{cityId}")
+    @DeleteMapping("/city/{cityId}")
     public Result<Object> deleteCity(@PathVariable int cityId) {
         return cityService.deleteCity(cityId);
     }
+
 }

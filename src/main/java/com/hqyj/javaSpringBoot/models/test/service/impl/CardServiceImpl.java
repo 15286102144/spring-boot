@@ -8,15 +8,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+
 @Service
-public class CardServiceimpl implements CardService {
+public class CardServiceImpl implements CardService {
 
     @Autowired
-    CardRepository repository;
+    private CardRepository cardRepository;
+
     @Override
     @Transactional
-    public Result<Card> insertcard(Card card) {
-        repository.saveAndFlush(card);
-        return new Result<Card>(Result.ResultStatus.SUCCESS.status,"insert success",card);
+    public Result<Card> insertCard(Card card) {
+        cardRepository.saveAndFlush(card);
+        return new Result<Card>(
+                Result.ResultStatus.SUCCESS.status,
+                "Insert success.", card);
     }
 }

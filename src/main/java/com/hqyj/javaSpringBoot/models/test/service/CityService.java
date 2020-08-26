@@ -7,11 +7,7 @@ import com.hqyj.javaSpringBoot.models.test.entity.City;
 
 import java.util.List;
 
-/**
- * @Description CityService
- * @Author HymanHu
- * @Date 2020/8/11 14:09
- */
+
 public interface CityService {
 
     List<City> getCitiesByCountryId(int countryId);
@@ -20,7 +16,7 @@ public interface CityService {
 
     PageInfo<City> getCitiesBySearchVo(SearchVo searchVo);
 
-    Result<City> insertcity(City city);
+    Result<City> insertCity(City city);
 
     Result<City> updateCity(City city);
 

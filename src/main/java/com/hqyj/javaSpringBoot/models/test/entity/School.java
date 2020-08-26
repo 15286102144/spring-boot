@@ -3,11 +3,7 @@ package com.hqyj.javaSpringBoot.models.test.entity;
 import javax.persistence.*;
 import java.util.List;
 
-/**
- * @Description School
- * @Author HymanHu
- * @Date 2020/7/30 13:51
- */
+
 @Entity
 @Table(name = "h_school")
 public class School {
@@ -22,9 +18,6 @@ public class School {
      * OneToMany：多方使用 joinClumn，创建外键，一方使用 mappedBy 属性
      * cascade：联级操作
      * fetch：加载数据策略
-     * cascade = CascadeType.REFRESH 当多个用户同时作操作一个实体，为了用户取到的数据是实时的，在用实体中的数据之前就可以调用一下refresh()方法！
-     FetchType.LAZY：懒加载，加载一个实体时，定义懒加载的属性不会马上从数据库中加载
-     FetchType.EAGER：急加载，加载一个实体时，定义急加载的属性会立即从数据库中加载
      */
     @OneToMany(mappedBy = "school", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     private List<Clazz> clazzes;

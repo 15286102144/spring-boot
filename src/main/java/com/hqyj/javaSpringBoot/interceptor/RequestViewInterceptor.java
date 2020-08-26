@@ -23,24 +23,29 @@ public class RequestViewInterceptor implements HandlerInterceptor {
     }
 
     @Override
-    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-            LOGGER.debug("==== Post interceptor ====");
+    public void postHandle(HttpServletRequest request,
+                           HttpServletResponse response,
+                           Object handler,
+                           ModelAndView modelAndView) throws Exception {
+        LOGGER.debug("==== Post interceptor ====");
 
-            if (modelAndView == null || modelAndView.getViewName().startsWith("redirect")) {
-                return;
-            }
-            String path = request.getServletPath();
-            String template = (String) modelAndView.getModelMap().get("template");
-            if (StringUtils.isBlank(template)) {
-                if (path.startsWith("/")) {
-                    path = path.substring(1);
-                }
-                modelAndView.getModelMap().addAttribute(
-                        "template", path.toLowerCase());
-            }
-
-            HandlerInterceptor.super.preHandle(request, response, handler);
+        if (modelAndView == null || modelAndView.getViewName().startsWith("redirect")) {
+            return;
         }
+
+        String path = request.getServletPath();
+        String template = (String) modelAndView.getModelMap().get("template");
+        if (StringUtils.isBlank(template)) {
+            if (path.startsWith("/")) {
+                path = path.substring(1);
+            }
+            modelAndView.getModelMap().addAttribute(
+                    "template", path.toLowerCase());
+        }
+
+        HandlerInterceptor.super.preHandle(request, response, handler);
+    }
+
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
         LOGGER.debug("==== After interceptor ====");

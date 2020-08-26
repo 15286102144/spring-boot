@@ -1,6 +1,5 @@
 package com.hqyj.javaSpringBoot.aspect;
 
-
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
@@ -13,10 +12,6 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
-
-/**
- * ServiceAspect ---- 以注解的方式进行切面程序
- * */
 
 
 @Aspect

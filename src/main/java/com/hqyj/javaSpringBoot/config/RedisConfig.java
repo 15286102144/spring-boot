@@ -23,18 +23,13 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 
-/**
- * @Description RedisConfig
- * @Author HymanHu
- * @Date 2020/8/16 9:48
- */
+
 @Configuration
 @EnableCaching
 @AutoConfigureAfter(RedisAutoConfiguration.class)
 public class RedisConfig {
 
     @Bean
-    @SuppressWarnings("all")
     public RedisTemplate<String, Object> redisTemplate (RedisConnectionFactory factory){
         RedisTemplate<String, Object> redisTemplate = new RedisTemplate<String, Object>();
         redisTemplate.setConnectionFactory(factory);

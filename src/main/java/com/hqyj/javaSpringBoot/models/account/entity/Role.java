@@ -9,52 +9,49 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-/**
- * 角色类
- */
-@Entity
+
 @Table(name = "role")
 public class Role {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int roleId;
-    private String roleName;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int roleId;
+	private String roleName;
 
-    @Transient
-    private List<User> users;
-    @Transient
-    private List<Resource> resources;
+	@Transient
+	private List<User> users;
+	@Transient
+	private List<Resource> resources;
 
-    public int getRoleId() {
-        return roleId;
-    }
+	public int getRoleId() {
+		return roleId;
+	}
 
-    public void setRoleId(int roleId) {
-        this.roleId = roleId;
-    }
+	public void setRoleId(int roleId) {
+		this.roleId = roleId;
+	}
 
-    public String getRoleName() {
-        return roleName;
-    }
+	public String getRoleName() {
+		return roleName;
+	}
 
-    public void setRoleName(String roleName) {
-        this.roleName = roleName;
-    }
+	public void setRoleName(String roleName) {
+		this.roleName = roleName;
+	}
 
-    public List<User> getUsers() {
-        return users;
-    }
+	public List<User> getUsers() {
+		return users;
+	}
 
-    public void setUsers(List<User> users) {
-        this.users = users;
-    }
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
 
-    public List<Resource> getResources() {
-        return resources;
-    }
+	public List<Resource> getResources() {
+		return resources;
+	}
 
-    public void setResources(List<Resource> resources) {
-        this.resources = resources;
-    }
+	public void setResources(List<Resource> resources) {
+		this.resources = resources;
+	}
 }

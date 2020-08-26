@@ -1,11 +1,11 @@
 package com.hqyj.javaSpringBoot.models.test.dao;
 
 import com.hqyj.javaSpringBoot.models.test.entity.Country;
-import com.hqyj.javaSpringBoot.models.test.entity.Country;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+
 
 @Repository
 @Mapper

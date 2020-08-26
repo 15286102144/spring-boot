@@ -3,9 +3,7 @@ package com.hqyj.javaSpringBoot.utils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.DigestUtils;
 
-/**
- * MD5 Util，密码加密
- */
+
 public class MD5Util {
 	private static final String SALT = "&%5123***&&%%$$#@";
 	
