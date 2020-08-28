@@ -3,6 +3,8 @@ package com.hqyj.javaSpringBoot.config;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import javafx.util.converter.BigDecimalStringConverter;
+import org.hibernate.persister.collection.BasicCollectionPersister;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration;
 import org.springframework.cache.CacheManager;
@@ -19,7 +21,9 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializationContext;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
+import org.springframework.web.bind.annotation.RestController;
 
+import javax.naming.ldap.BasicControl;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 
@@ -28,7 +32,6 @@ import java.util.Arrays;
 @EnableCaching
 @AutoConfigureAfter(RedisAutoConfiguration.class)
 public class RedisConfig {
-
     @Bean
     public RedisTemplate<String, Object> redisTemplate (RedisConnectionFactory factory){
         RedisTemplate<String, Object> redisTemplate = new RedisTemplate<String, Object>();

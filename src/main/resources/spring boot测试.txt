@@ -1,0 +1,103 @@
+一、选择题（共12小题，每小题2.5分，共30分）
+	以下不是spring boot优点的是 ( D )
+		A．快速搭建项目
+		B．简化配置  
+		C．自动配置  
+		D．无需容器
+	Spring Boot配置，以下哪个优先级最高（ A）
+		A、外置：xx.jar同目录下/config/application.properties；
+		B、外置：xx.jar同目录下/config/application.yml；
+		C、内置：src/main/resources/config；
+		D、内置：src/main/resources
+	以下log日志级别哪个最高（D）
+		A、DEBUG
+		B、INFO
+		C、WARN
+		D、ERROR
+	以下不是spring boot的核心注解的是 (B )
+		A.	@SpringBootConfiguration
+		B.	@EnableAutoConfiguration
+		C.	@ComponentScan
+		D.	@MapperScan
+	要使用springMVC的功能，需要导入那个包 ( C )
+		A．spring-boot-starter-jdbc  
+		B．spring-boot-starter-thymeleaf  
+		C．spring-boot-starter-web  
+		D．mybatis-spring-boot-starter
+	以下哪个注解不能加在类上 (B  )
+		A.	@Controller
+		B.	@ResponseBody
+		C.	@RestController
+		D.	@RequestMapping
+	当控制层上有@RestController注解时，方法中返回一个字符串“<h1>Hello</h1>”，浏览器调用的结果是 ( C )
+		A. 一级标题显示的Hello
+		B.	找不到Hello.html
+		C.	<h1>Hello</>
+		D.	Hello
+	SpringBoot项目中配置文件的格式 ( C )
+		A．properties  
+		B．yml  
+		C．两者都可以
+	不是SpringBoot核心配置文件是（A）
+		A.	bootstrap
+		B.	application
+		C.	application-dev
+	前台使用json参数格式，控制器consumer、参数使用的注解是（A）
+		A、application/josn ---- @RequestBody
+		B、application/josn ---- @ModelAttribute
+		C、application/x-www-form-urlencoded ---- @RequestBody
+		D、application/x-www-form-urlencoded ---- @ModelAttribute
+	@Pointcut("execution(public * com.thornBird.sbd.modules.*.controller.*.*(..))")，第三个*代表（C）
+		A、代表返回类型不限
+		B、代表module下所有子包
+		C、代表所有类
+		D、代表所有方法
+	Url匹配风格中/admin*，以下哪个匹配不正确（D）
+		A、/admin
+		B、/admin1
+		C、/admin123
+		D、/admin/1
+	Mybatis框架中，插入数据使用那个注解（B）
+		A、@Update
+		B、@Insert
+		C、@Select
+		D、@InsertMapping
+
+二、填空题（共5小题，每小题5分，共25分）
+	获取配置文件的属性值，使用哪个注解____@value____________；
+	Java配置依赖的2个注解是_____@Confirguration_____，____@Bean_______;
+	Spring Boot修改tomcat端口号为9090应该怎么写？____sever.http.port=9090________;
+	自定义拦截器需要实现___Interceptor_____接口；
+	过滤器需要使用____@WebFilter_____注解;
+	上传文件，使用__@RequestParam__接收文件对象，consumer使用__multipart/form-data___;
+
+三、问答题（每题5分，共25分）
+	阐述 Spring Boot 特性，举一个例子来解释 Staters 的内容；
+                 答：以组类聚的形式形成单条依赖，spring-boot-starter-web 即可引入相关依赖，以父子继承的方式，实现 jar 版本的控制。
+	Mybatis传参中，#{*}、${*}的区别？
+                答：#{*}可以防止sql注入，${*}相当于直接拼接不能防止sql注入。
+	简述Restful规则？
+                答：URI结尾不应包含（/）；
+	      正斜杠分隔符（/）必须用来指示层级关系；
+	     不得在URI中使用下划线（_）；
+	     URI路径中全都使用小写字母；
+                     url应包含单个查寻参数；
+                    不用提交方式用作方法名。
+	简述Git使用流程，写几个常用Git命令？
+                答：先创建一个远程仓库如GitHub上创建，复制仓库地址在指定的文件目录下进入dos命令窗口
+                 输入"git clone + 远程代码仓库地址" 将远程仓库下载到本地，
+                idea中配置好本地git安装路径以及登录账户，在本地仓库中创建的项目可以通过idea项目名右键点击git选择Commit Changes 
+                 选择要上传的文件夹点击commit and push即可提交到远程仓库。
+
+
+	简述shiro两大功能实现流程；
+                    答：认证：前端用户输入的用户名密码通过控制器调用业务层方法将用户名密码包装到令牌类中通过subject.login(),到自定义realm中继承 AuthorizingRealm 重写认证授权方法，
+                             在认证方法中将认证器中传入需要认证的参数（用户名，密码，自定义realm名称）没有异常抛出认证成功。
+                           授权：通过业务层调用授权方法进入自定义realm类中的授权方法，通过查询数据库将该用户的权限添加进去。
+
+四、编程题（每题10分，共20分）
+	1、提供一个接口，返回 List<User> 列表，对该列表进行排序、保留10条数据；页面端使用 ajax post 方式提交请求，包装查询参数，获取接口返回数据，并遍历数据渲染到页面上 table 表格中；
+	   
+                      
+	2、设计一套购物车接口，以 Cookie 或者 redis 实现
+
