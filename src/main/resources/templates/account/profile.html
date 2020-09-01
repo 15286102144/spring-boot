@@ -337,7 +337,6 @@
         initFileInput();
 
         initUserProfile($("#userId").html());
-        initUserProfile($("#userId").val());
 
         $("#editProfile").bind("click", function(){
             editProfile();
@@ -369,7 +368,6 @@
     function editProfile() {
         var user = {};
         user.userId = $("#userId").html();
-        user.userId = $("#userId").val();
         user.userName = $("#userName").val();
         user.userImg = $("#userImg").val();
 

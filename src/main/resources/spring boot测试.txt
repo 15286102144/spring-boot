@@ -14,7 +14,7 @@
 		B、INFO
 		C、WARN
 		D、ERROR
-	以下不是spring boot的核心注解的是 (B )
+	以下不是spring boot的核心注解的是 (D )
 		A.	@SpringBootConfiguration
 		B.	@EnableAutoConfiguration
 		C.	@ComponentScan
@@ -29,7 +29,7 @@
 		B.	@ResponseBody
 		C.	@RestController
 		D.	@RequestMapping
-	当控制层上有@RestController注解时，方法中返回一个字符串“<h1>Hello</h1>”，浏览器调用的结果是 ( C )
+	当控制层上有@RestController注解时，方法中返回一个字符串“<h1>Hello</h1>”，浏览器调用的结果是 ( A )
 		A. 一级标题显示的Hello
 		B.	找不到Hello.html
 		C.	<h1>Hello</>
@@ -66,7 +66,7 @@
 二、填空题（共5小题，每小题5分，共25分）
 	获取配置文件的属性值，使用哪个注解____@value____________；
 	Java配置依赖的2个注解是_____@Confirguration_____，____@Bean_______;
-	Spring Boot修改tomcat端口号为9090应该怎么写？____sever.http.port=9090________;
+	Spring Boot修改tomcat端口号为9090应该怎么写？____sever.port=9090________;
 	自定义拦截器需要实现___Interceptor_____接口；
 	过滤器需要使用____@WebFilter_____注解;
 	上传文件，使用__@RequestParam__接收文件对象，consumer使用__multipart/form-data___;
