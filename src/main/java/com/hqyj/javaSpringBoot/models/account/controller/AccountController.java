@@ -81,4 +81,12 @@ public class AccountController {
         return "indexSimple";
     }
 
+//猴子吃桃问题
+    public static void main(String[] args) {
+        int j=1534;
+        for (int i = 0; i < 10; i++) {
+            System.out.println("j = " + j);
+            j=(j/2)-1;
+        }
+    }
 }

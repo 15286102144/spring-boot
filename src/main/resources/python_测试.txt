@@ -1,0 +1,89 @@
+一，选择题
+	以下哪个不是python解释器（D）
+		CPython
+		IPython
+		Jython
+		py
+	下列哪个表达式在Python中是非法的？(B)
+		x = y = z = 1
+		x = (y = z + 1)
+		x, y = y, x
+		x += y
+	print("%d %% %d"%(3, 5)) 输出结果是？(A)
+		3 % 5
+		3 %% 5
+		2
+		1
+	“今年第一季度GDP提高了x%”，x为float值，格式化字符串，x保留两位小数，下面哪个是正确的？(C)
+		print("今年第一季度GDP提高了%.2f"%(22.234,))
+		print("今年第一季度GDP提高了%.2f%"%(22.234,))
+		print("今年第一季度GDP提高了%.2f%%"%(22.234,))
+		print("今年第一季度GDP提高了{0}%".format(22.234))
+	l = ["cdsa", 32, 33.2, None, True];l.pop();print(l);打印结果是：(C)
+		["cdsa", 32, 33.2, True]
+		["cdsa", 32, None, True]
+		["cdsa", 32, 33.2, None]
+		[32, 33.2, None, True]
+	print(15 // 2);(B)
+		1
+		7
+		7.5
+		8
+	下面哪个不是 python 的数据类型(CD)
+		int
+		str
+		set
+		double
+	*args 代表什么参数(B)
+		位置参数
+		可变参数
+		可变关键字参数
+		命名关键字参数
+	函数多个返回值，实际上返回的是什么数据类型？(A)
+		list
+		set
+		tuple
+		dict
+	安装Django2.0.7版本，使用的什么命令？(C)
+		pip install django
+		pip install django=2.0.7
+		pip install django==2.0.7
+		pip install django version=2.0.7
+
+二、填空题
+	字符串前面添加u、r、b分别代表什么？
+                 答：u代表是以Unicode编码，r代表是普通字符串，b代表是bytes
+	requests模块请求远程服务器，如何设置相应编码？
+                 答：r.apparent_encoding
+	windows下执行python的方式；  
+                 答 ：python  xxx.py
+	创建python package，会自动生成什么文件？
+                 答：--init--.py
+	python变量作用域有哪些？
+                 答：局部、全局、内建、闭包函数外
+
+三、问答题
+	python命名规则？
+                答：字母数字下划线不得以数字开头全小写多个单词用_隔开，常量全大写，全局变量双下划线开头，私有变量单下划线开头，系统变量双下划线开头和结尾
+	set删除操作中，pop、remove的区别？
+                答：pop无参数时删除第一个，remove需要传参数
+	list使用+=和append函数的区别？
+                答：append每一条数据作为单独的一个dict，+号拼接为一个
+	使用bs4解析响应内容，获取某div（class为aaa）下所有span节点；
+                答：bs.find(name="div", attrs={"class":"aaa"}).find_all(name='span')
+	简述Django操作流程、组件的作用；
+                答：浏览器向服务器发起一个请求，请求会去urls匹配相应路径并调用方法，如果不涉及到数据调用，那么视图函数直接返回一个模板给用户，反之，视图函数调用模型进行数据处理，并填充到模版中返回给用户；
+                  
+
+四、编程题
+	定义一个函数，接受 0 个或多个参数，返回累计乘积；
+                def m(*x):
+                       s= 0;
+                       for i in x:
+                       s *= i;
+                      return s；
+
+	定义一个函数，去掉字符串前后的空格；
+          def mm(s):
+                s=s.strip();
+                print(s)
